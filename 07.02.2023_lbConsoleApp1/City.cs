@@ -18,14 +18,14 @@ namespace CitySpace
 
         public void AddDistrict(string name)
         {
-            string[] _districts = new string[Districts.Length+1];
-            for(int i = 0; i < Districts.Length; i++)
+            string[] _districts = new string[Districts.Length + 1];
+            for (int i = 0; i < Districts.Length; i++)
             {
                 _districts[i] = Districts[i];
             }
-            _districts[_districts.Length-1] = name;
+            _districts[_districts.Length - 1] = name;
             Districts = new string[_districts.Length];
-            for(int i=0; i < Districts.Length; i++)
+            for (int i = 0; i < Districts.Length; i++)
             {
                 Districts[i] = _districts[i];
             }
@@ -33,9 +33,9 @@ namespace CitySpace
 
         public void PrintDistricts()
         {
-            foreach(var district in Districts)
+            foreach (var district in Districts)
             {
-                if(district == null) continue;
+                if (district == null) continue;
                 Console.WriteLine(district);
             }
         }
@@ -48,6 +48,38 @@ namespace CitySpace
         public void DeleteDistrict(int index)
         {
             Districts[index] = null;
+        }
+
+        public static int operator +(City city, int people)
+        {
+            city.Population += people;
+            return city.Population;
+        }
+
+        public static int operator -(City city, int people)
+        {
+            city.Population -= people;
+            return city.Population;
+        }
+
+        public static bool operator >(City city1, City city2)
+        {
+            return city1.Population > city2.Population;
+        }
+
+        public static bool operator <(City city1, City city2)
+        {
+            return city1.Population < city2.Population;
+        }
+
+        public static bool operator ==(City city1, City city2)
+        {
+            return city1.Population == city2.Population;
+        }
+
+        public static bool operator !=(City city1, City city2)
+        {
+            return city1.Population != city2.Population;
         }
     }
 }
